@@ -1,0 +1,90 @@
+---
+title: "Week 4 Activity"
+author: 'Group X: A, B, C, D'
+date: "9/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(datasets)
+library(dplyr)
+
+```
+
+### Part 1 (dplyr)
+
+In the part 1 of the activity you will write or interpret short dplyr pipes
+that explore or analyze the `Orange` data from R's `datasets` package. The data
+which contains 35 rows and 3 columns recording the growth
+of orange trees.  The three columns in the data set are:
+
+  - `Tree`: an ordered factor, identifying individual trees, 
+  - `age`: a numeric vector giving the number of days 
+    since the tree was planted,
+  - `circumference`: a numeric vector recording the circumference of the 
+    trunk in mm. 
+
+You can read more at `?Orange`. 
+
+1. Write a dplyr pipe to determine the number of
+observations per tree.
+
+```{r q1}
+Orange %>%
+  group_by(Tree) %>%
+  group_size()
+```
+
+2. Write a dplyr pipe to change the units of age to "years" 
+and circumference to "cm".
+
+```{r q2}
+Orange %>%
+  mutate(age = age / 365,
+            circumference = circumference / 10)
+```
+
+ 
+3. Write a dplyr pipe to add a column assigning a
+z-score to each tree, centered around the mean for all trees at a given age.
+
+```{r q3}
+Orange %>%
+  mutate(z_score = (age - mean(age)) / sd(age))
+```
+
+ 
+4. Write a dplyr pipe to calculate the average rate of growth
+(cm/year) across all trees between between age 0 (assume circumference = 0) and
+the final measured age for each tree.
+
+```{r q4}
+Orange %>%
+  group_by(Tree) %>%
+  filter(age == max(age)) %>%
+  summarise(growth_rate = mean(circumference / age))
+```
+
+5. Describe the result of the following pipe in 1-3 sentences. Your
+    *description* should touch on both the rows and columns and also describe
+    a substantive question addressed by the result. 
+
+```r
+ Orange %>%
+   group_by(Tree) %>%
+   mutate( 
+     new_growth = c(circumference[1], diff(circumference)),
+     elapsed = c(age[1], diff(age))
+   ) %>%
+   group_by(age) %>% 
+   summarize( 
+     avg_rate = mean(new_growth / elapsed),
+     se = sd( new_growth / elapsed ) / sqrt(n()) 
+   )
+```
+
+This dplyr pipe is used to calculate the average growth rates for each tree,
+ranging from age 0 to the final measured age. Each row repreents the average
+growth rate from the previous time point and the standard error in this time
+period.

@@ -14,8 +14,8 @@ Jialun Li: https://github.com/CataphractLi/Stats506_public
 * Week 3: Git and markdown. Git and markdown. Git and markdown.
 
 ### Week 4-6
-Minghao Yang: https://github.com/Minghaoy97/Stats506_Public
-Enhao Li: https://github.com/Lehao25/Stats506_public
-Jialun Li: https://github.com/CataphractLi/Stats506_public
+Minghao Yang: https://github.com/Minghaoy97/Stats506_Public  
+Enhao Li: https://github.com/Lehao25/Stats506_public  
+Jialun Li: https://github.com/CataphractLi/Stats506_public  
 
 * Week 4: Dplyr
