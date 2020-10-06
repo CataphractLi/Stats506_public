@@ -3,7 +3,7 @@
 * Course Homepage: https://jbhender.github.io/Stats506/F20/  
 * Github Repository: https://github.com/jbhender/Stats506_F20/  
 
-## Activity
+## Activities
 ### Weeks 1-3
 Yawen Hu: https://github.com/yawenh/Stats506_public  
 Zhilin He: https://github.com/zhilinheobv/Stats506_public  
@@ -18,4 +18,5 @@ Minghao Yang: https://github.com/Minghaoy97/Stats506_Public
 Enhao Li: https://github.com/Lehao25/Stats506_public  
 Jialun Li: https://github.com/CataphractLi/Stats506_public  
 
-* Week 4: Dplyr
+* Week 4: Dplyr (part 1). Focusing on data manipulation using "dplyr" package.
+* Week 5: DPlyr (part 2). Focusing on generating plots using "ggplot2" package.
