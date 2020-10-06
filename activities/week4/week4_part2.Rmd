@@ -1,0 +1,94 @@
+---
+title: "Week 4 Activity, Part 2"
+author: 'Group X: A, B, C, D'
+date: "9/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Part 2 (ggplot2)
+
+In this part of the activity, you will use the summary data below and attempt
+to reproduce the plot in each question using ggplot.
+
+Here is some preparatory work to get the summary results (partially) into
+shape for plotting. 
+
+```{r prep, message = FALSE}
+# libraries
+library(tidyverse)
+
+# read in summary results
+q2_df = readr::read_delim("./w4_p2_RECS2015_internet.csv", delim = ",")
+```
+
+```{r prep_reshape}
+# reshape for plotting
+plot_data = q2_df %>%
+  pivot_longer(cols = starts_with('p_int'), names_prefix = 'p_int',
+               names_to = 'var') %>%
+  mutate( rurality = stringr::str_replace_all(var, '_.*', ''),
+          type = ifelse( grepl('_', var), 
+                        stringr::str_replace_all(var, '.*_', ''),
+                        'est'
+                        )
+  ) %>%
+  pivot_wider(id_cols = c('division', 'rurality'), 
+              names_from = type, 
+              values_from = value
+  ) 
+```
+
+1. Write code where indicated to match the first figure included in the README.
+```{r q1_fig1, fig.cap = cap, message = FALSE}
+cap = paste("**Figure 1.** *Proportion of homes with internet access in each",
+            "Census Division.*")
+
+# Use ggplot to produce a figure `p1` matching what is shown using the
+#  data above. 
+p1 = plot_data %>%
+      filter(rurality != "diff") %>%
+      ggplot( aes(x = est, y = division, color = rurality)) +
+      geom_point(
+        position = position_dodge2(width = 0.5)
+      ) +
+      geom_errorbarh(aes(xmin = lwr, xmax = upr),
+                     position = position_dodge(width = 0.5),
+                     height = 0.75) +
+      theme_bw() +
+      xlab("Propotion of homes with Internet access") +
+      ylab("division") +
+      xlim(c(0.58, 0.98)) +
+      scale_color_manual( values = c('darkred', 'darkblue'))
+
+# Remove comments to plot and save
+ggsave('w4_p2_q1_plot.png', p1)
+p1
+```
+
+2. Write code where indicated to match the second figure included in the README.
+```{r q2_fig2, fig.cap = cap, message = FALSE}
+cap = paste("**Figure 2.** *Difference (urban less rural) in proportion of",
+  "homes with internet access in each Census Division.*")
+
+# Use ggplot to produce a figure `p2` matching what is shown using the
+#  data above. 
+p2 =  plot_data %>%
+      filter(rurality == "diff") %>%
+      ggplot( aes(x = est, y = division)) +
+      geom_point() +
+      geom_errorbarh(aes(xmin = lwr, xmax = upr)) +
+      geom_vline(aes(xintercept = 0), linetype = "dashed") +
+      theme_bw() +
+      xlab("Differences in propotion of homes with Internet access") +
+      ylab("division")
+  
+# Remove comments to plot and save
+ggsave('w4_p2_q2_plot.png', p2)
+p2
+
+```
+
