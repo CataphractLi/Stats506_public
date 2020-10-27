@@ -22,8 +22,8 @@ Jialun Li: https://github.com/CataphractLi/Stats506_public
 * Week 5: DPlyr (part 2). Focusing on generating plots using "ggplot2" package.
 
 ### Group Project
-Chuwen Li: https://github.com/lixx4228/Stats506_public
-Zhilin He: https://github.com/zhilinheobv/Stats506_public
-Jialun Li: https://github.com/CataphractLi/Stats506_public
+Chuwen Li: https://github.com/lixx4228/Stats506_public   
+Zhilin He: https://github.com/zhilinheobv/Stats506_public   
+Jialun Li: https://github.com/CataphractLi/Stats506_public   
 
 **Group Project Repository**: https://github.com/zhilinheobv/group3_project 
