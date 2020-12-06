@@ -67,6 +67,8 @@ source("Final Project.R")
   i. Summarize the data into graphs and tables for presentation and get 
   conclusions.
 
+  The source code can be found at:
+  https://github.com/CataphractLi/Stats506_public/tree/master/Final%20Project
 
 # Results {.tabset .tabset-pills}
 
