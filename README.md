@@ -27,3 +27,9 @@ Zhilin He: https://github.com/zhilinheobv/Stats506_public
 Jialun Li: https://github.com/CataphractLi/Stats506_public   
 
 **Group Project Repository**: https://github.com/zhilinheobv/group3_project 
+
+
+
+### Final Project
+
+**Final Project Repository**: https://github.com/CataphractLi/Stats506_public/tree/master/Final%20Project

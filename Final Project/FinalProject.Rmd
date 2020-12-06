@@ -14,7 +14,7 @@ output:
 # 79: -------------------------------------------------------------------------
 #! We generally don't need to see the code in the results document.
 knitr::opts_chunk$set(echo = FALSE)
-source("Final Project.R")
+source("FinalProject.R")
 #! Make sure all chunks have a label. This one is labeled 'setup'.
 ```
 
@@ -82,6 +82,7 @@ source("Final Project.R")
   
 ``` {r building_mean, echo = FALSE, fig.align='center'}
   wh_mean_plot
+  wh_mean_table
 ```
 
   The proportions for working hour categories for different divisions and 
@@ -98,6 +99,7 @@ source("Final Project.R")
   
 ``` {r footage_mean, echo = FALSE, fig.align='center'}
   whsq_mean_plot
+  whsq_mean_table
 ```
 
   The proportions for working hour categories for different divisions and 
