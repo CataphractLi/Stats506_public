@@ -2,12 +2,7 @@
 title: "Stats 506, F20, Final Project"
 author: "Jialun Li, ljlstudy@umich.edu"
 date: "`r format.Date(Sys.Date(), '%B %d, %Y')`"
-output:
-    html_document:
-    toc: false
-    toc_float:
-        collapsed: false
-    number_sections: false
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -21,116 +16,79 @@ source("FinalProject.R")
 # Introduction
   
   Different commercial buildings have different operation times. Moreover, 
-  their operation times may vary from buildings to buildings due to different 
-  regulations of companies. However, There may exists some common patterns for 
-  the operating time in one specific division, or in one specific building 
-  types (Office, shopping mall, lodging houses, etc.).
+  their operation times may vary from buildings to buildings due to multiple 
+  reasons (Regulations, geographic conditions, etc.). However, there may exist 
+  some common patterns for the operating time in one specific division, or in 
+  one specific building types (Office, shopping mall, lodging houses...). 
+  Some buildings will possibly have longer operating hours than others in 
+  general.
   
   Hence, in my final project, I decided to carry out analysis to answer this 
   question: **For what portion of the day are different types of commercial ** 
   **buildings typically in use?**
   
-  This analysis may be helpful for further energy consumption analysis. For 
-  example, buildings in longer operating time may have more energy consumed and 
-  this analysis will point out which type of commercial buildings or commercial 
-  buildings in which division are in heavily operation each day.
+  This analysis may be helpful for further energy consumption analysis. For
+  example, buildings in longer operation time may have more energy consumed. 
+  This analysis will point out which type of commercial buildings in which 
+  are in heavily operation each day.
   
-  I will analyze *the mean working hours* and *proportion of working hour* 
-  *categories* for buildings in each division and principal building activities. 
-  Moreover, considering that the square footage of buildings 
-  (<code>SQFT</code>) may affect the final result, besides the per-building 
-  analysis, I will also do per-square-footage analysis.
+  I will analyze *the mean working hours* for buildings in each division with
+  different building activities. Moreover, considering that the square
+  footage of buildings may have some influence on the final result, besides 
+  the per-building analysis, I will also do per-square-footage analysis.
   
 
 # Data & Methods
 
   The data set I planned to use is the 2012 US Commercial Building Energy 
-  Consumption Survey (CBECS) data.
-  
-  My data analysis steps include:
-  
-  i. Read in the data set (including replicate weights and the code book).
+  Consumption Survey (CBECS) data. My data analysis steps is:
   
   i. Clean the data, select variables in interest and assign labels to the 
-  levels of the categorical  variables. The main variables I will use is: 
-  <code>PUBID</code>, <code>CENDIV</code>, <code>PBA</code>, <code>SQFT</code>, 
-  <code>WKHRS</code>, <code>WKHRSC</code>, <code>FINALWT</code>, 
-  <code>FINALWT1-197</code> and *imputed* variables. For imputed data,  I will 
-  only use the reported rows.
+  categorical variables. I will only use those truly responded observations for 
+  my analysis.
   
-  i. Compute the mean and proportions for the working hours grouped by division 
-  and principal building activities. 
-  
-  i. Compute the variance using replicate weights and get the corresponding 
-  confidence intervals.
+  i. Compute the mean proportions for working hours per day grouped by division 
+  and principal building activities with 95% confidence intervals using 
+  replicate weights.
 
-  i. Summarize the data into graphs and tables for presentation and get 
-  conclusions.
+  *(Special Notes on imputed variables: In this survey, some observations *
+  *failed to get accurate responses. For these variables, there are additional *
+  *variables with the same name plus a prefix "Z" as the identifier, *
+  *determining whether these variables are truly responded, estimated or *
+  *imputed.)*
 
-  The source code can be found at:
-  https://github.com/CataphractLi/Stats506_public/tree/master/Final%20Project
 
-# Results {.tabset .tabset-pills}
+# Results
 
-  Note: There are some problems in the confidence intervals for the proportions 
-  hence I do not plot them.
 
 ## Per Building Analysis
 
-  The mean working hours for different divisions and different principal 
-  building activities are:
-  
-``` {r building_mean, echo = FALSE, fig.align='center'}
+``` {r building_mean, echo = FALSE, fig.width = 12, fig.align='center', warning = FALSE}
   wh_mean_plot
-  wh_mean_table
 ```
 
-  The proportions for working hour categories for different divisions and 
-  different principal building activities are:
 
-``` {r building_proportions, echo = FALSE, fig.align='center'}
-  wh_proportion_plot
-```
+## Per Square-Footage Analysis
 
-## Per Square Footage Analysis
-
-  The mean working hours for different divisions and different principal 
-  building activities are:
-  
-``` {r footage_mean, echo = FALSE, fig.align='center'}
+``` {r footage_mean, echo = FALSE, fig.width = 12, fig.align='center', warning = FALSE}
   whsq_mean_plot
-  whsq_mean_table
 ```
 
-  The proportions for working hour categories for different divisions and 
-  different principal building activities are:
-
-``` {r footage_proportions, echo = FALSE, fig.align='center'}
-  whsq_proportion_plot
-```
 
 # Conclusion
 
-  We can see that buildings with PBA label 18 has the longest operation hours 
-  among all census divisions. It operates almost throughout the week. The 
-  buildings with PBA label 06 also have relatively long operating hours. 
-  For other buildings, the operating time vary from division to division. 
-  Buildings with PBA label 04 have significantly longer operating hours in some 
-  divisions.
-
-# TODO list
-
-  i. Determine why the confidence intervals are extremely wide for proportions.
+  It can be seen that lodging buildings has the longest operation hours among 
+  all divisions. It operates almost throughout the day. Food selling 
+  buildings also have relatively long operating hours. For other buildings, the 
+  operation time varies from division to division. Service buildings, health 
+  care buildings and offices occupied the smallest proportion of the day in 
+  operation.
   
-  i. Take the imputed variables like <code>ZSQFT</code> into consideration.
+  The per-square-footage analysis gives approximately the same conclusion. 
+  However, the proportions of buildings like laboratory and mall-excluded 
+  retail buildings have more variations than the per-building analysis.
   
-  i. Think about a more clear way to plot the proportions. (Tables are ready 
-  but with many NAs.)
+  This analysis only summarized about 2300 observations and they may not be 
+  convincing enough. More detailed analysis will help in answering this 
+  question more thoroughly.
   
-  i. Transform the levels into labels and modify the conclusion parts.
-  
-  i. Add more comments in the Results and Conclusion parts.
-
-
-
-

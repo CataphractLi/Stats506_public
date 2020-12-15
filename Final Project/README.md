@@ -9,7 +9,6 @@
 + 2012_public_use_data_aug2016.csv
 
 + 2012microdata_codebook.xlsx
-+ cbecs_clean.csv
 
 
 
@@ -23,7 +22,8 @@
 ##### Final Project Main Files
 
 + FinalProject.R: The main script for the final project.
++ FinalProject_Full: The back-up script for the final project. (containing many unnecessary codes without comments.)
 + FinalProject.Rmd: The write-up file for the final project.
-+ FinalProject.html: The final product (draft).
++ FinalProject.pdf: The final product.
 
 ​	
